@@ -1,84 +1,191 @@
 import json, os
 
-dataset = open("emd.json")
+dataset = open("ruas.json")
 
 data = json.load(dataset)
 
 dataset.close()
 
-for p in data:
-    nome = p["nome"]["primeiro"] + " " + p["nome"]["último"]
-    day = p["dataEMD"]
-    idade = p["idade"]
-    genero = p["género"]
-    modalidade = p["modalidade"]
-    clube = p["clube"]
-    resultado = p["resultado"]
-    index = p["index"]
+old_image_dir_html = "../MapaRuas-materialBase/imagem"
 
-    pageHTML = f"""
+new_image_dir_html = "../MapaRuas-materialBase/atual"
+new_image_dir_python = "./MapaRuas-materialBase/atual"
+
+
+def get_value(obj, tags):
+    if len(tags) == 0:
+        return ""
+
+    ans = obj.get(tags[0], "")
+
+    for p in tags[1::]:
+        if ans == "" or not(isinstance(ans, dict)):
+            break
+
+        ans = ans.get(p, "")
+
+    return ans
+
+def generate_new_images_html(nome, number):
+    ans = ""
+    for filename in os.listdir(new_image_dir_python):
+        num = int(filename.split('-')[0])
+
+        if num == number:
+            # print(nome, filename)
+            # print()
+
+            path = new_image_dir_html + "/" + filename
+
+            ans += f"""
+                <div class="w3-card-4 w3-row w3-container w3-margin">
+                    <img id="{filename}" src="{path}" alt="{filename}" class="w3-image w3-border w3-padding">
+                    <div class="w3-container w3-center">
+                        <p>{nome} atualmente</p>
+                    </div>
+                </div>
+            """
+            
+    return ans
+
+def generate_images_html(images):
+    ans = ""
+
+    if isinstance(images, dict):
+        id = get_value(images, ["@id"])
+        path = get_value(images, ["imagem", "@path"])
+        desc = get_value(images, ["legenda"])
+
+        path = path.split("/")[-1]
+
+        path = old_image_dir_html + "/" + path
+
+        ans = f"""
+        <div class="w3-card-4 w3-row w3-container w3-margin">
+            <img id="{id}" src="{path}" alt="{desc}" class="w3-image w3-border w3-padding">
+            <div class="w3-container w3-center">
+                <p>{desc}</p>
+            </div>
+        </div>
+        """
+
+    if isinstance(images, list):
+        ans = ""
+
+        for img in images:
+            ans += generate_images_html(img)
+    
+    return ans
+
+def generate_text_html(text):
+    ans = ""
+
+    if isinstance(text, str):
+        ans = f"""
+            <p class="w3-margin-top">{text}</p>
+        """
+    
+    elif isinstance(text, list):
+        for t in text:
+            ans += generate_text_html(t)
+    
+    return ans
+
+def generate_casas_html(casas):
+    ans = ""
+
+    if isinstance(casas, dict):
+        numero = get_value(casas, ["número"])
+        enfiteuta = get_value(casas, ["enfiteuta"])
+        foro = get_value(casas, ["foro"])
+        desc = get_value(casas, ["desc", "para"])
+
+        ans = f"""
+            <tr class="w3-row w3-dark-grey">
+                <td class="w3-col m2">{numero}</td>
+                <td class="w3-col m2">{enfiteuta}</td>
+                <td class="w3-col m2">{foro}</td>
+                <td class="w3-col m6">{desc}</td>
+            </tr>
+        """
+
+    if isinstance(casas, list):
+        ans = ""
+
+        for casa in casas:
+            ans += generate_casas_html(casa)
+    
+    return ans
+
+for r in data:
+    nome = r["rua"]["meta"]["nome"]
+    nome_sem_espacos = nome.replace(" ", "_")
+
+    preHTML = f"""
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
-        <title>Exame Médico Desportivo: {nome}</title>
+        <title>{nome}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="w3.css">
         <title>Document</title>
     </head>
 
-    <body>
+    <body class="w3-dark-grey">
 
-        <div class="w3-card-4">
+    """
 
-            <header class="w3-container w3-purple">
-                <h3>Exame Médico Desportivo: {nome}</h3>
-            </header>
+    images = get_value(r, ["rua", "corpo", "figura"])
+    imagesHTML = generate_images_html(images)
 
-            <div class="w3-container">
-                <table class="w3-table w3-striped">
-                    <tr>
-                        <td><b>Data do EMD</b></td>
-                        <td>{day}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Idade</b></td>
-                        <td>{idade}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Género</b></td>
-                        <td>{"Feminino" if genero else "Masculino"}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Modalidade</b></td>
-                        <td>{modalidade}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Clube</b></td>
-                        <td>{clube}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Resultado</b></td>
-                        <td><b>{"Apto" if resultado else "Inapto"}</b></td>
-                    </tr>
-                </table>
+    number = int(get_value(r, ["rua", "meta", "número"]))
+    new_images_html = generate_new_images_html(nome, number)
+
+    text = get_value(r, ["rua", "corpo", "para"])
+    textHTML = generate_text_html(text)
+
+    casas = get_value(r, ["rua", "corpo", "lista-casas", "casa"])
+    casasHTML = generate_casas_html(casas)
+
+    content = f"""
+        <div class="w3-row">
+            <div class="w3-col m8 w3-row">
+                <div id="images" class="w3-col m6">
+                    {imagesHTML}
+                </div>
+                <div id="images" class="w3-col m6">
+                    {new_images_html}
+                </div>
             </div>
-
-            <footer class="w3-container w3-purple">
-                <h5>Generated by EMDApp::EngWeb2024::A100695</h5>
-                <address>
-                    <a href="index.html">Voltar à página principal</a>
-                </address>
-            </footer>
-
+            <div id="text" class="w3-col m4">
+                {textHTML}
+            </div>
         </div>
 
+        <table id="casas" class="w3-table-all w3-border w3-margin-top w3-margin-bottom">
+            <tr class="w3-row w3-dark-grey"><th class="w3-col m2">Número</th><th class="w3-col m2">Enfiteuta</th><th class="w3-col m2">Foro</th><th class="w3-col m6">Descrição</th></tr>
+            {casasHTML}
+        </table>
+
+        <div class="w3-container w3-teal w3-blue-grey w3-margin-top">
+            <footer class="w3-container">
+                <a href="./index.html">Return to home page</a>
+                <h5>Generated by RCBApp::EngWeb2024::A100695</h5>
+            </footer>
+        </div>
+    """
+
+    
+    posHTML = """
     </body>
 
     </html>
     """
 
-    f = open(f'./emdSite/emd{index}.html', 'w')
+    pageHTML = preHTML + content + posHTML
+
+    f = open(f'./ruaSite/rua_{nome_sem_espacos}.html', 'wt')
     f.write(pageHTML)
     f.close()

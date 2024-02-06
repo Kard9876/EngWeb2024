@@ -3,42 +3,31 @@
 # Dependencies
 # xmltodict (pip install xmltodict)
 
-import json, os, xmltodict, xml.etree.ElementTree as ET
+import json, os, xmltodict, xml.etree.ElementTree as ET, copy
 
-print(os.listdir(os.getcwd()))
-
-def add_extra_whitespace(c):
-    if c == ',' or c == '.' or c == '!' or c == '?' or c == ';':
-        return ""
-
-    return " "
-
-# Still not functioning -> it's adding whitespaces and newline char at "random" points
+# Function acquired through intensive research and some help from BingAI
 def ignore_tag(elem, tags):
     for c in list(elem):
-        if val:
-            print(c)
-
         if c.tag in tags:
             idx = list(elem).index(c)
             if c.text:
                 if elem.text:
-                    elem.text += ' ' + c.text.strip()
+                    elem.text += ' ' + c.text
                 else:
-                    elem.text = ' ' + c.text.strip()
+                    elem.text = ' ' + c.text
             if c.tail:
                 if idx + 1 < len(elem):
                     if elem[idx + 1].text:
-                        elem[idx + 1].text = ' ' + c.tail.strip() + elem[idx + 1].text
+                        elem[idx + 1].text = ' ' + c.tail + elem[idx + 1].text
                     else:
-                        elem[idx + 1].text = ' ' + c.tail.strip()
+                        elem[idx + 1].text = ' ' + c.tail
                 else:
                     if elem.tail:
-                        elem.tail += ' ' + c.tail.strip()
+                        elem.tail += ' ' + c.tail
                     else:
-                        elem.tail = ' ' + c.tail.strip()
+                        elem.tail = ' ' + c.tail
 
-                    elem.text += ' ' + elem.tail.strip()
+                    elem.text += ' ' + elem.tail
 
             elem.remove(c)
         else:
@@ -53,8 +42,9 @@ val = True
 
 for filename in os.listdir(file_dir):
     f = open(file_dir + f"/{filename}")
-
     xml_str = ET.fromstring(f.read())
+    f.close()
+
     ignore_tag(xml_str, ["lugar", "data", "entidade"])
     new_xml_str = ET.tostring(xml_str, encoding='unicode')
 
@@ -67,10 +57,23 @@ for filename in os.listdir(file_dir):
 
     final_json += json.dumps(file_json, ensure_ascii=False)
     final_json += ","
-    f.close()
 
 final_json = final_json[:-1] + ']'
 
-f = open('test.json', 'w')
+while True:
+    prev = final_json
+
+    final_json = final_json.replace(" .", ".")
+    final_json = final_json.replace(" !", "!")
+    final_json = final_json.replace(" ?", "?")
+    final_json = final_json.replace(" ;", ";")
+    final_json = final_json.replace(" ,", ",")
+    final_json = final_json.replace("\\n", " ")
+    final_json = final_json.replace("  ", " ")
+
+    if prev == final_json:
+        break
+
+f = open('ruas.json', 'w')
 f.write(final_json)
 f.close()

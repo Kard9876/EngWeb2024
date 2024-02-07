@@ -176,12 +176,18 @@ for r in data:
             </div>
         </div>
 
-        <div class="w3-margin">
-            <table id="casas" class="w3-table-all w3-border w3-margin-top w3-margin-bottom">
-                <tr class="w3-light-grey"><th class="w3-col m2">Número</th><th class="w3-col m2">Enfiteuta</th><th class="w3-col m2">Foro</th><th class="w3-col m6">Descrição</th></tr>
-                {casasHTML}
-            </table>
-        </div>
+        {"" if casas == "" else 
+            f'''
+            <div class="w3-margin">
+                <table id="casas" class="w3-table-all w3-border w3-margin-top w3-margin-bottom">
+                    <tr class="w3-light-grey"><th class="w3-col m2">Número</th><th class="w3-col m2">Enfiteuta</th><th class="w3-col m2">Foro</th><th class="w3-col m6">Descrição</th></tr>
+                    {casasHTML}
+                </table>
+            </div>
+            '''
+         }
+
+        
 
         <div class="w3-container w3-blue-grey w3-margin-top">
             <footer class="w3-container">

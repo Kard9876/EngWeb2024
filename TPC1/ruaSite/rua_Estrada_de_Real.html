@@ -11,39 +11,49 @@
         <title>Document</title>
     </head>
 
-    <body class="w3-dark-grey">
+    <body class="w3-light-grey">
 
     
-        <div class="w3-row">
-            <div class="w3-col m8 w3-row flex-box">
-                <div id="images" class="w3-col m6 flex-box flex-column flex-grow space-evenly">
+        <header class="w3-container w3-blue-grey w3-center">
+            <h3>Estrada de Real</h3>
+        </header>
+
+        <div class="w3-row flex-box">
+            <div class="w3-col m8 w3-row">
+                <div id="images" class="flex-box flex-column flex-grow space-evenly w3-padding w3-margin">
+                    <header class="w3-container w3-blue-grey w3-center w3-padding w3-margin">
+                        <h3>Planeamento</h3>
+                    </header>
                     
-        <div class="w3-card-4 w3-row w3-container w3-margin">
-            <img id="MRB-57-norte" src="../MapaRuas-materialBase/imagem/MRB-57-EstradaDeReal-norte.jpg" alt="Estrada de Real - norte." class="w3-image w3-border w3-padding">
+        <div class="w3-card-4 w3-padding w3-margin">
+            <img id="MRB-57-norte" src="../MapaRuas-materialBase/imagem/MRB-57-EstradaDeReal-norte.jpg" alt="Estrada de Real - norte." class="w3-image w3-border">
             <div class="w3-container w3-center">
                 <p>Estrada de Real - norte.</p>
             </div>
         </div>
         
-        <div class="w3-card-4 w3-row w3-container w3-margin">
-            <img id="MRB-57-sul" src="../MapaRuas-materialBase/imagem/MRB-57-EstradaDeReal-sul.jpg" alt="Estrada de Real - sul." class="w3-image w3-border w3-padding">
+        <div class="w3-card-4 w3-padding w3-margin">
+            <img id="MRB-57-sul" src="../MapaRuas-materialBase/imagem/MRB-57-EstradaDeReal-sul.jpg" alt="Estrada de Real - sul." class="w3-image w3-border">
             <div class="w3-container w3-center">
                 <p>Estrada de Real - sul.</p>
             </div>
         </div>
         
                 </div>
-                <div id="images" class="w3-col m6 flex-box flex-column flex-grow space-evenly">
+                <div id="images" class="flex-box flex-column flex-grow space-evenly w3-padding w3-margin">
+                    <header class="w3-container w3-blue-grey w3-center w3-padding w3-margin">
+                        <h3>Atualmente</h3>
+                    </header>
                     
-                <div class="w3-card-4 w3-row w3-container w3-margin">
-                    <img id="57-EstradadeReal-Vista1.JPG" src="../MapaRuas-materialBase/atual/57-EstradadeReal-Vista1.JPG" alt="57-EstradadeReal-Vista1.JPG" class="w3-image w3-border w3-padding">
+                <div class="w3-card-4 w3-padding w3-margin">
+                    <img id="57-EstradadeReal-Vista1.JPG" src="../MapaRuas-materialBase/atual/57-EstradadeReal-Vista1.JPG" alt="57-EstradadeReal-Vista1.JPG" class="w3-image w3-border">
                     <div class="w3-container w3-center">
                         <p>Estrada de Real atualmente</p>
                     </div>
                 </div>
             
-                <div class="w3-card-4 w3-row w3-container w3-margin">
-                    <img id="57-EstradadeReal-Vista2.JPG" src="../MapaRuas-materialBase/atual/57-EstradadeReal-Vista2.JPG" alt="57-EstradadeReal-Vista2.JPG" class="w3-image w3-border w3-padding">
+                <div class="w3-card-4 w3-padding w3-margin">
+                    <img id="57-EstradadeReal-Vista2.JPG" src="../MapaRuas-materialBase/atual/57-EstradadeReal-Vista2.JPG" alt="57-EstradadeReal-Vista2.JPG" class="w3-image w3-border">
                     <div class="w3-container w3-center">
                         <p>Estrada de Real atualmente</p>
                     </div>
@@ -51,8 +61,8 @@
             
                 </div>
             </div>
-            <div class="w3-col m4 w3-row flex-box flex-column flex-grow">
-                <div id="text" class="w3-center flex-box flex-column flex-grow space-evenly w3-border w3-padding w3-margin-top w3-margin-bottom">
+            <div id="text" class="w3-col m4 w3-center flex-box flex-column flex-grow w3-padding w3-margin-top w3-margin-bottom">
+                <div class="flex-box  flex-column flex-grow space-evenly w3-border w3-padding w3-margin-top w3-margin-bottom">
                     
             <p class="w3-margin-top">Longa via, talvez decalcando a velha estrada romana, saía de Braga, por terrenos que pensamos ser coincidentes com os da actual rua Andrade Corvo, em direção á freguesia suburbana de S.Jerónimo de Real.</p>
         
@@ -64,33 +74,35 @@
             </div>
         </div>
 
-        <table id="casas" class="w3-table-all w3-border w3-margin-top w3-margin-bottom">
-            <tr class="w3-row w3-dark-grey"><th class="w3-col m2">Número</th><th class="w3-col m2">Enfiteuta</th><th class="w3-col m2">Foro</th><th class="w3-col m6">Descrição</th></tr>
-            
-            <tr class="w3-row w3-dark-grey">
+        <div class="w3-margin">
+            <table id="casas" class="w3-table-all w3-border w3-margin-top w3-margin-bottom">
+                <tr class="w3-light-grey"><th class="w3-col m2">Número</th><th class="w3-col m2">Enfiteuta</th><th class="w3-col m2">Foro</th><th class="w3-col m6">Descrição</th></tr>
+                
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">1</td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m6">Campo do prazo da Quinta da Cónega(freguesia de S.Pedro de Maximinos).</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">2 a 20</td>
                 <td class="w3-col m2">Sebastião de Faria Gusmão, enfiteuta principa da Quinta da Cónega.</td>
                 <td class="w3-col m2"></td>
-                <td class="w3-col m6">['Pertencem à Quinta da Cónega, a cujo enfiteuta se paga foro. O nº17 confronta, do poente, com o caminho que vai para a Quinta do Real.', 'O nº18, confronta, do poente, com o caminho que vai junto da Curutela para a cangosta do Pópulo.']</td>
+                <td class="w3-col m6"><p>Pertencem à Quinta da Cónega, a cujo enfiteuta se paga foro. O nº17 confronta, do poente, com o caminho que vai para a Quinta do Real.</p><p>O nº18, confronta, do poente, com o caminho que vai junto da Curutela para a cangosta do Pópulo.</p></td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">21</td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m6">Corresponde a um campo do prazo da Quinta da Cónega. Confronta, do nascente, com a casa nº22 da Rua da Cónega.</td>
             </tr>
         
-        </table>
+            </table>
+        </div>
 
-        <div class="w3-container w3-teal w3-blue-grey w3-margin-top">
+        <div class="w3-container w3-blue-grey w3-margin-top">
             <footer class="w3-container">
                 <a href="./index.html">Return to home page</a>
                 <h5>Generated by RCBApp::EngWeb2024::A100695</h5>

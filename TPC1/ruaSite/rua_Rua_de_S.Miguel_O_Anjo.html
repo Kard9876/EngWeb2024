@@ -11,39 +11,49 @@
         <title>Document</title>
     </head>
 
-    <body class="w3-dark-grey">
+    <body class="w3-light-grey">
 
     
-        <div class="w3-row">
-            <div class="w3-col m8 w3-row flex-box">
-                <div id="images" class="w3-col m6 flex-box flex-column flex-grow space-evenly">
+        <header class="w3-container w3-blue-grey w3-center">
+            <h3>Rua de S.Miguel O Anjo</h3>
+        </header>
+
+        <div class="w3-row flex-box">
+            <div class="w3-col m8 w3-row">
+                <div id="images" class="flex-box flex-column flex-grow space-evenly w3-padding w3-margin">
+                    <header class="w3-container w3-blue-grey w3-center w3-padding w3-margin">
+                        <h3>Planeamento</h3>
+                    </header>
                     
-        <div class="w3-card-4 w3-row w3-container w3-margin">
-            <img id="MRB-26-norte" src="../MapaRuas-materialBase/imagem/MRB-26-SaoMiguelOAnjo-Norte.png" alt="Rua de S.Miguel O Anjo - Norte" class="w3-image w3-border w3-padding">
+        <div class="w3-card-4 w3-padding w3-margin">
+            <img id="MRB-26-norte" src="../MapaRuas-materialBase/imagem/MRB-26-SaoMiguelOAnjo-Norte.png" alt="Rua de S.Miguel O Anjo - Norte" class="w3-image w3-border">
             <div class="w3-container w3-center">
                 <p>Rua de S.Miguel O Anjo - Norte</p>
             </div>
         </div>
         
-        <div class="w3-card-4 w3-row w3-container w3-margin">
-            <img id="MRB-26-sul" src="../MapaRuas-materialBase/imagem/MRB-26-SaoMiguelOAnjo-Sul.png" alt="Rua de S.Miguel O Anjo - Sul" class="w3-image w3-border w3-padding">
+        <div class="w3-card-4 w3-padding w3-margin">
+            <img id="MRB-26-sul" src="../MapaRuas-materialBase/imagem/MRB-26-SaoMiguelOAnjo-Sul.png" alt="Rua de S.Miguel O Anjo - Sul" class="w3-image w3-border">
             <div class="w3-container w3-center">
                 <p>Rua de S.Miguel O Anjo - Sul</p>
             </div>
         </div>
         
                 </div>
-                <div id="images" class="w3-col m6 flex-box flex-column flex-grow space-evenly">
+                <div id="images" class="flex-box flex-column flex-grow space-evenly w3-padding w3-margin">
+                    <header class="w3-container w3-blue-grey w3-center w3-padding w3-margin">
+                        <h3>Atualmente</h3>
+                    </header>
                     
-                <div class="w3-card-4 w3-row w3-container w3-margin">
-                    <img id="26-RuadeS.MiguelOAnjo-Vista1.JPG" src="../MapaRuas-materialBase/atual/26-RuadeS.MiguelOAnjo-Vista1.JPG" alt="26-RuadeS.MiguelOAnjo-Vista1.JPG" class="w3-image w3-border w3-padding">
+                <div class="w3-card-4 w3-padding w3-margin">
+                    <img id="26-RuadeS.MiguelOAnjo-Vista1.JPG" src="../MapaRuas-materialBase/atual/26-RuadeS.MiguelOAnjo-Vista1.JPG" alt="26-RuadeS.MiguelOAnjo-Vista1.JPG" class="w3-image w3-border">
                     <div class="w3-container w3-center">
                         <p>Rua de S.Miguel O Anjo atualmente</p>
                     </div>
                 </div>
             
-                <div class="w3-card-4 w3-row w3-container w3-margin">
-                    <img id="26-RuadeS.MiguelOAnjo-Vista2.JPG" src="../MapaRuas-materialBase/atual/26-RuadeS.MiguelOAnjo-Vista2.JPG" alt="26-RuadeS.MiguelOAnjo-Vista2.JPG" class="w3-image w3-border w3-padding">
+                <div class="w3-card-4 w3-padding w3-margin">
+                    <img id="26-RuadeS.MiguelOAnjo-Vista2.JPG" src="../MapaRuas-materialBase/atual/26-RuadeS.MiguelOAnjo-Vista2.JPG" alt="26-RuadeS.MiguelOAnjo-Vista2.JPG" class="w3-image w3-border">
                     <div class="w3-container w3-center">
                         <p>Rua de S.Miguel O Anjo atualmente</p>
                     </div>
@@ -51,8 +61,8 @@
             
                 </div>
             </div>
-            <div class="w3-col m4 w3-row flex-box flex-column flex-grow">
-                <div id="text" class="w3-center flex-box flex-column flex-grow space-evenly w3-border w3-padding w3-margin-top w3-margin-bottom">
+            <div id="text" class="w3-col m4 w3-center flex-box flex-column flex-grow w3-padding w3-margin-top w3-margin-bottom">
+                <div class="flex-box  flex-column flex-grow space-evenly w3-border w3-padding w3-margin-top w3-margin-bottom">
                     
             <p class="w3-margin-top">Pequena artéria extra-muros que ligava a rua Em Frente dos Açogues,com o campo das Hortas e a rua de Cruz de Pedra.</p>
         
@@ -68,68 +78,70 @@
             </div>
         </div>
 
-        <table id="casas" class="w3-table-all w3-border w3-margin-top w3-margin-bottom">
-            <tr class="w3-row w3-dark-grey"><th class="w3-col m2">Número</th><th class="w3-col m2">Enfiteuta</th><th class="w3-col m2">Foro</th><th class="w3-col m6">Descrição</th></tr>
-            
-            <tr class="w3-row w3-dark-grey">
+        <div class="w3-margin">
+            <table id="casas" class="w3-table-all w3-border w3-margin-top w3-margin-bottom">
+                <tr class="w3-light-grey"><th class="w3-col m2">Número</th><th class="w3-col m2">Enfiteuta</th><th class="w3-col m2">Foro</th><th class="w3-col m6">Descrição</th></tr>
+                
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">1</td>
                 <td class="w3-col m2">Inácio Peixoto</td>
                 <td class="w3-col m2">50 reis e 1 galinha</td>
                 <td class="w3-col m6">Pertenceu ao Padre João Rodrigues. Confronta, do norte com casa foreira à Mitra. Foi construída depois de 1539 em pertenças do nº2.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">2 e 3</td>
                 <td class="w3-col m2">Padre Pedro Francisco</td>
                 <td class="w3-col m2">100 reis e 2 galinhas</td>
                 <td class="w3-col m6">A casa nº2 confronta, do poente, com o rossio que está no princípio da Rua da Cruz da Pedra.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">4</td>
                 <td class="w3-col m2">Gregório José Braga, alfaiate</td>
                 <td class="w3-col m2">25 reis e 1 galinha</td>
                 <td class="w3-col m6">Foi construída, depois de 1555, em pertenças do número 2. Confronta, do nascente, com casa foreira à Câmara.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">5</td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m2">5 reis(de censo)</td>
                 <td class="w3-col m6">Os livros das pensões referem que esta casa foi de João Gomes, genro do Mestre Gonçalo, «e que há muitos anos se não paga este censo».</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">6</td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m2">5 reis(de censo)</td>
                 <td class="w3-col m6">O censo é pago por Mónica Veloso de Freitas, viúva.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">7</td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m2">5 reis(de censo)</td>
                 <td class="w3-col m6">Pertenceu Pedro Martins. O censo é pago Gaspar de Medeiros.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">8</td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m6">Pertence ao nº1 da rua em frente do Açogue para onde tem frontaria e serventia principais.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">9</td>
                 <td class="w3-col m2">D.António de Noronha de Mesquita Soares</td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m6">A casa e parte do quintal são foreiras ao Hospital de S.Marcos. Pela outra parte do quintal paga-se, de foro, 451 reis ao nº1 do Campo de S.Sebastião. Encontra-se subemprazada aos herdeiros do Padre António Velho Maciel, beneficiado.</td>
             </tr>
         
-        </table>
+            </table>
+        </div>
 
-        <div class="w3-container w3-teal w3-blue-grey w3-margin-top">
+        <div class="w3-container w3-blue-grey w3-margin-top">
             <footer class="w3-container">
                 <a href="./index.html">Return to home page</a>
                 <h5>Generated by RCBApp::EngWeb2024::A100695</h5>

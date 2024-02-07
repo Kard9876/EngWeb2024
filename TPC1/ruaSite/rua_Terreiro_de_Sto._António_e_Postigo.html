@@ -11,39 +11,49 @@
         <title>Document</title>
     </head>
 
-    <body class="w3-dark-grey">
+    <body class="w3-light-grey">
 
     
-        <div class="w3-row">
-            <div class="w3-col m8 w3-row flex-box">
-                <div id="images" class="w3-col m6 flex-box flex-column flex-grow space-evenly">
+        <header class="w3-container w3-blue-grey w3-center">
+            <h3>Terreiro de Sto. António e Postigo</h3>
+        </header>
+
+        <div class="w3-row flex-box">
+            <div class="w3-col m8 w3-row">
+                <div id="images" class="flex-box flex-column flex-grow space-evenly w3-padding w3-margin">
+                    <header class="w3-container w3-blue-grey w3-center w3-padding w3-margin">
+                        <h3>Planeamento</h3>
+                    </header>
                     
-        <div class="w3-card-4 w3-row w3-container w3-margin">
-            <img id="MRB-20-norte" src="../MapaRuas-materialBase/imagem/MRB-20-TerreiroDeStoAntonioEPostigo-norte.jpg" alt="RUa das Chagas - norte" class="w3-image w3-border w3-padding">
+        <div class="w3-card-4 w3-padding w3-margin">
+            <img id="MRB-20-norte" src="../MapaRuas-materialBase/imagem/MRB-20-TerreiroDeStoAntonioEPostigo-norte.jpg" alt="RUa das Chagas - norte" class="w3-image w3-border">
             <div class="w3-container w3-center">
                 <p>RUa das Chagas - norte</p>
             </div>
         </div>
         
-        <div class="w3-card-4 w3-row w3-container w3-margin">
-            <img id="MRB-20-sul" src="../MapaRuas-materialBase/imagem/MRB-20-TerreiroDeStoAntonioEPostigo-sul.jpg" alt="RUa das Chagas - poente" class="w3-image w3-border w3-padding">
+        <div class="w3-card-4 w3-padding w3-margin">
+            <img id="MRB-20-sul" src="../MapaRuas-materialBase/imagem/MRB-20-TerreiroDeStoAntonioEPostigo-sul.jpg" alt="RUa das Chagas - poente" class="w3-image w3-border">
             <div class="w3-container w3-center">
                 <p>RUa das Chagas - poente</p>
             </div>
         </div>
         
                 </div>
-                <div id="images" class="w3-col m6 flex-box flex-column flex-grow space-evenly">
+                <div id="images" class="flex-box flex-column flex-grow space-evenly w3-padding w3-margin">
+                    <header class="w3-container w3-blue-grey w3-center w3-padding w3-margin">
+                        <h3>Atualmente</h3>
+                    </header>
                     
-                <div class="w3-card-4 w3-row w3-container w3-margin">
-                    <img id="20-TerreiroDeSto.Ant¢nioEPostigo-Vista1.JPG" src="../MapaRuas-materialBase/atual/20-TerreiroDeSto.Ant¢nioEPostigo-Vista1.JPG" alt="20-TerreiroDeSto.Ant¢nioEPostigo-Vista1.JPG" class="w3-image w3-border w3-padding">
+                <div class="w3-card-4 w3-padding w3-margin">
+                    <img id="20-TerreiroDeSto.Ant¢nioEPostigo-Vista1.JPG" src="../MapaRuas-materialBase/atual/20-TerreiroDeSto.Ant¢nioEPostigo-Vista1.JPG" alt="20-TerreiroDeSto.Ant¢nioEPostigo-Vista1.JPG" class="w3-image w3-border">
                     <div class="w3-container w3-center">
                         <p>Terreiro de Sto. António e Postigo atualmente</p>
                     </div>
                 </div>
             
-                <div class="w3-card-4 w3-row w3-container w3-margin">
-                    <img id="20-TerreiroDeSto.Ant¢nioEPostigo-Vista2.JPG" src="../MapaRuas-materialBase/atual/20-TerreiroDeSto.Ant¢nioEPostigo-Vista2.JPG" alt="20-TerreiroDeSto.Ant¢nioEPostigo-Vista2.JPG" class="w3-image w3-border w3-padding">
+                <div class="w3-card-4 w3-padding w3-margin">
+                    <img id="20-TerreiroDeSto.Ant¢nioEPostigo-Vista2.JPG" src="../MapaRuas-materialBase/atual/20-TerreiroDeSto.Ant¢nioEPostigo-Vista2.JPG" alt="20-TerreiroDeSto.Ant¢nioEPostigo-Vista2.JPG" class="w3-image w3-border">
                     <div class="w3-container w3-center">
                         <p>Terreiro de Sto. António e Postigo atualmente</p>
                     </div>
@@ -51,8 +61,8 @@
             
                 </div>
             </div>
-            <div class="w3-col m4 w3-row flex-box flex-column flex-grow">
-                <div id="text" class="w3-center flex-box flex-column flex-grow space-evenly w3-border w3-padding w3-margin-top w3-margin-bottom">
+            <div id="text" class="w3-col m4 w3-center flex-box flex-column flex-grow w3-padding w3-margin-top w3-margin-bottom">
+                <div class="flex-box  flex-column flex-grow space-evenly w3-border w3-padding w3-margin-top w3-margin-bottom">
                     
             <p class="w3-margin-top">Pequena artéria que ligava o terreiro de S. Tiago ao Postigo de S.Sebastião.</p>
         
@@ -76,61 +86,63 @@
             </div>
         </div>
 
-        <table id="casas" class="w3-table-all w3-border w3-margin-top w3-margin-bottom">
-            <tr class="w3-row w3-dark-grey"><th class="w3-col m2">Número</th><th class="w3-col m2">Enfiteuta</th><th class="w3-col m2">Foro</th><th class="w3-col m6">Descrição</th></tr>
-            
-            <tr class="w3-row w3-dark-grey">
+        <div class="w3-margin">
+            <table id="casas" class="w3-table-all w3-border w3-margin-top w3-margin-bottom">
+                <tr class="w3-light-grey"><th class="w3-col m2">Número</th><th class="w3-col m2">Enfiteuta</th><th class="w3-col m2">Foro</th><th class="w3-col m6">Descrição</th></tr>
+                
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">1 e 2</td>
                 <td class="w3-col m2">Fernando da Cunha Sottomayor</td>
                 <td class="w3-col m2">320 reis e 4 galinhas</td>
                 <td class="w3-col m6">Encontram-se unidas, num só prazo, desde 1569. A casa n.º 1 confronta, do nascente, com uma parte da casa que é foreira à comenda de S. Pedro de Merelim.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">3</td>
                 <td class="w3-col m2">João Domingues, casado com Maria Vaz</td>
                 <td class="w3-col m2">320 reis e 4 galinhas</td>
                 <td class="w3-col m6">O enfiteuta é da freguesia de Penso, concelho de Melgaço.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">4</td>
                 <td class="w3-col m2">D. Doroteia de Vasconcelos, viúva de Francisca Ferreira da Costa</td>
                 <td class="w3-col m2">250 reis e 2 galinhas</td>
                 <td class="w3-col m6">Confronta, do poente, com casa foreira ao mosteiro de Bouro.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">5</td>
                 <td class="w3-col m2">D. Doroteia de Vasconcelos, viúva</td>
                 <td class="w3-col m2">170 reis e 1 galinha</td>
                 <td class="w3-col m6"></td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">6, 7, 8 e 9</td>
                 <td class="w3-col m2">D. Doroteia de Vasconcelos, viúva de Francisca Ferreira da Costa</td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m6">Foram construídas, depois do ano de 1683, no quintal da casa n.º 4 e pagavam foro a este prazo.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">10</td>
                 <td class="w3-col m2">Quitéria Maria</td>
                 <td class="w3-col m2">300 reis e 2 galinhas</td>
                 <td class="w3-col m6">A enfiteuta é filha de António de Araújo, escrivão das apelações, e de sua 2.ª mulher, Ursula de Araújo. A casa foi construída, depois do ano de 1557, em pertenças do n.º 12, da Rua de D. Gualdim.</td>
             </tr>
         
-            <tr class="w3-row w3-dark-grey">
+            <tr class="w3-row w3-light-grey">
                 <td class="w3-col m2">11</td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m2"></td>
                 <td class="w3-col m6">Corresponde ao n.º 11 da Rua de D. Gualdim, para onde tem frontaria e serventia principais.</td>
             </tr>
         
-        </table>
+            </table>
+        </div>
 
-        <div class="w3-container w3-teal w3-blue-grey w3-margin-top">
+        <div class="w3-container w3-blue-grey w3-margin-top">
             <footer class="w3-container">
                 <a href="./index.html">Return to home page</a>
                 <h5>Generated by RCBApp::EngWeb2024::A100695</h5>

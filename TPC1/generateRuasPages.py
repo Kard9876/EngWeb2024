@@ -129,6 +129,7 @@ for r in data:
         <title>{nome}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="w3.css">
         <title>Document</title>
     </head>
@@ -151,16 +152,18 @@ for r in data:
 
     content = f"""
         <div class="w3-row">
-            <div class="w3-col m8 w3-row">
-                <div id="images" class="w3-col m6">
+            <div class="w3-col m8 w3-row flex-box">
+                <div id="images" class="w3-col m6 flex-box flex-column flex-grow space-evenly">
                     {imagesHTML}
                 </div>
-                <div id="images" class="w3-col m6">
+                <div id="images" class="w3-col m6 flex-box flex-column flex-grow space-evenly">
                     {new_images_html}
                 </div>
             </div>
-            <div id="text" class="w3-col m4">
-                {textHTML}
+            <div class="w3-col m4 w3-row flex-box flex-column flex-grow">
+                <div id="text" class="w3-center flex-box flex-column flex-grow space-evenly w3-border w3-padding w3-margin-top w3-margin-bottom">
+                    {textHTML}
+                </div>
             </div>
         </div>
 

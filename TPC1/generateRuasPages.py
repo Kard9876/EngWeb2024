@@ -101,10 +101,10 @@ def generate_casas_html(casas):
 
         ans = f"""
             <tr class="w3-row w3-light-grey">
-                <td class="w3-col m2">{numero}</td>
-                <td class="w3-col m2">{enfiteuta}</td>
-                <td class="w3-col m2">{foro}</td>
-                <td class="w3-col m6">{desc}</td>
+                <td class="w3-col m2">{numero if numero != None else ""}</td>
+                <td class="w3-col m2">{enfiteuta if enfiteuta != None else ""}</td>
+                <td class="w3-col m2">{foro if foro != None else ""}</td>
+                <td class="w3-col m6">{desc if desc != None else ""}</td>
             </tr>
         """
 

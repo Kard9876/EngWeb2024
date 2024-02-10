@@ -5,7 +5,7 @@ image_dir_html = "../MapaRuas-materialBase/atual"
 image_dir_python = "./MapaRuas-materialBase/atual"
 
 def chaveOrd(r):
-    return get_value(r, ["rua", "meta", "nome"])
+    return get_value(r, ["rua", "meta", "nome"]).lower()
 
 def get_rua_image(number):
     for filename in os.listdir(image_dir_python):

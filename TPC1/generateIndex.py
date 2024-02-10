@@ -5,7 +5,27 @@ image_dir_html = "../MapaRuas-materialBase/atual"
 image_dir_python = "./MapaRuas-materialBase/atual"
 
 def chaveOrd(r):
-    return get_value(r, ["rua", "meta", "nome"]).lower()
+    key = get_value(r, ["rua", "meta", "nome"]).lower()
+
+    special_chars = {
+        'á': 'a',
+        'à': 'a',
+        'â': 'a',
+        'ã': 'a',
+        'é': 'e',
+        'ê': 'e',
+        'í': 'i',
+        'ó': 'o',
+        'ô': 'o',
+        'õ': 'o',
+        'ú': 'u',
+        'ç': 'c',
+    }
+
+    for special, default in special_chars.items():
+        key = key.replace(special, default)
+
+    return key
 
 def get_rua_image(number):
     for filename in os.listdir(image_dir_python):

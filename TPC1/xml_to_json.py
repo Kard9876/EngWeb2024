@@ -9,30 +9,16 @@ import json, os, xmltodict, xml.etree.ElementTree as ET, copy
 def ignore_tag(elem, tags):
     for c in list(elem):
         if c.tag in tags:
-            idx = list(elem).index(c)
+
             if c.text:
                 if elem.text:
-                    elem.text += ' ' + c.text
+                    elem.text += c.text + c.tail if c.tail else ""
                 else:
-                    elem.text = ' ' + c.text
-            if c.tail:
-                if idx + 1 < len(elem):
-                    if elem[idx + 1].text:
-                        elem[idx + 1].text = ' ' + c.tail + elem[idx + 1].text
-                    else:
-                        elem[idx + 1].text = ' ' + c.tail
-                else:
-                    if elem.tail:
-                        elem.tail += ' ' + c.tail
-                    else:
-                        elem.tail = ' ' + c.tail
-
-                    elem.text += ' ' + elem.tail
+                    elem.text = c.text + c.tail if c.tail else ""
 
             elem.remove(c)
         else:
             ignore_tag(c, tags)
-
 # file_dir = "/mnt/c/Users/Guilherme\ Barbosa/Desktop/UM/3Ano2Semestre/EngWeb/Repo/EngWeb2024/TPC1/MapaRuas-materialBase/MapaRuas-materialBase/texto"
 file_dir = "./MapaRuas-materialBase/texto"
 

@@ -8,7 +8,6 @@ import json, os, xmltodict, xml.etree.ElementTree as ET, copy
 # Function acquired through intensive research and some help from BingAI
 def ignore_tag(elem, tags):
     for c in list(elem):
-<<<<<<< HEAD
         if c.tag in tags.keys():
             init_tag = f"<{tags[c.tag]}>"
             close_tag = f"</{tags[c.tag]}>"
@@ -18,19 +17,11 @@ def ignore_tag(elem, tags):
                     elem.text += init_tag + c.text + close_tag + c.tail if c.tail else ""
                 else:
                     elem.text = init_tag + c.text + close_tag + c.tail if c.tail else ""
-=======
-        if c.tag in tags:
-
-            if c.text:
-                if elem.text:
-                    elem.text += c.text + c.tail if c.tail else ""
-                else:
-                    elem.text = c.text + c.tail if c.tail else ""
->>>>>>> main
 
             elem.remove(c)
         else:
             ignore_tag(c, tags)
+
 # file_dir = "/mnt/c/Users/Guilherme\ Barbosa/Desktop/UM/3Ano2Semestre/EngWeb/Repo/EngWeb2024/TPC1/MapaRuas-materialBase/MapaRuas-materialBase/texto"
 file_dir = "./MapaRuas-materialBase/texto"
 

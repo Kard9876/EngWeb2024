@@ -8,6 +8,17 @@ import json, os, xmltodict, xml.etree.ElementTree as ET, copy
 # Function acquired through intensive research and some help from BingAI
 def ignore_tag(elem, tags):
     for c in list(elem):
+<<<<<<< HEAD
+        if c.tag in tags.keys():
+            init_tag = f"<{tags[c.tag]}>"
+            close_tag = f"</{tags[c.tag]}>"
+
+            if c.text:
+                if elem.text:
+                    elem.text += init_tag + c.text + close_tag + c.tail if c.tail else ""
+                else:
+                    elem.text = init_tag + c.text + close_tag + c.tail if c.tail else ""
+=======
         if c.tag in tags:
 
             if c.text:
@@ -15,6 +26,7 @@ def ignore_tag(elem, tags):
                     elem.text += c.text + c.tail if c.tail else ""
                 else:
                     elem.text = c.text + c.tail if c.tail else ""
+>>>>>>> main
 
             elem.remove(c)
         else:
@@ -24,29 +36,25 @@ file_dir = "./MapaRuas-materialBase/texto"
 
 final_json = "["
 
-val = True
-
 for filename in os.listdir(file_dir):
     f = open(file_dir + f"/{filename}")
     xml_str = ET.fromstring(f.read())
     f.close()
 
-    ignore_tag(xml_str, ["lugar", "data", "entidade"])
+    ignore_tag(xml_str, {"lugar": "b", "data": "b", "entidade": "i"})
     new_xml_str = ET.tostring(xml_str, encoding='unicode')
 
     file_json = xmltodict.parse(new_xml_str)
 
-    if val:
-        print(file_json)
-
     val = False
 
-    final_json += json.dumps(file_json, ensure_ascii=False)
+    final_json += json.dumps(file_json, ensure_ascii=False, indent=4)
     final_json += ","
 
 final_json = final_json[:-1] + ']'
+prev = None
 
-while True:
+while prev != final_json:
     prev = final_json
 
     final_json = final_json.replace(" .", ".")
@@ -56,9 +64,6 @@ while True:
     final_json = final_json.replace(" ,", ",")
     final_json = final_json.replace("\\n", " ")
     final_json = final_json.replace("  ", " ")
-
-    if prev == final_json:
-        break
 
 f = open('ruas.json', 'w')
 f.write(final_json)

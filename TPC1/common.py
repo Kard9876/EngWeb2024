@@ -3,11 +3,11 @@ def get_value(obj, tags):
         return ""
 
     ans = obj.get(tags[0], "")
+    p = 1
 
-    for p in tags[1::]:
-        if ans == "" or not(isinstance(ans, dict)):
-            break
+    while ans != "" and ans is not None and p < len(tags):
+        ans = ans.get(tags[p], "")
 
-        ans = ans.get(p, "")
+        p += 1
 
     return ans

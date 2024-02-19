@@ -9,12 +9,9 @@ import json, os, xmltodict, xml.etree.ElementTree as ET, copy
 def ignore_tag(elem, tags):
     for c in list(elem):
         if c.tag in tags.keys():
-            idx = list(elem).index(c)
-
             init_tag = f"<{tags[c.tag]}>"
             close_tag = f"</{tags[c.tag]}>"
 
-            # print(c.tag, c.text, c.tail)
             if c.text:
                 if elem.text:
                     elem.text += init_tag + c.text + close_tag + c.tail if c.tail else ""
@@ -46,8 +43,9 @@ for filename in os.listdir(file_dir):
     final_json += ","
 
 final_json = final_json[:-1] + ']'
+prev = None
 
-while True:
+while prev != final_json:
     prev = final_json
 
     final_json = final_json.replace(" .", ".")
@@ -57,9 +55,6 @@ while True:
     final_json = final_json.replace(" ,", ",")
     final_json = final_json.replace("\\n", " ")
     final_json = final_json.replace("  ", " ")
-
-    if prev == final_json:
-        break
 
 f = open('ruas.json', 'w')
 f.write(final_json)

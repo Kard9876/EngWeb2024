@@ -1,9 +1,6 @@
 def get_value(obj, tags):
-    if len(tags) == 0:
-        return ""
-
-    ans = obj.get(tags[0], "")
-    p = 1
+    ans = obj
+    p = 0
 
     while ans != "" and ans is not None and p < len(tags):
         ans = ans.get(tags[p], "")

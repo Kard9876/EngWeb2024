@@ -1,13 +1,10 @@
 def get_value(obj, tags):
-    if len(tags) == 0:
-        return ""
+    ans = obj
+    p = 0
 
-    ans = obj.get(tags[0], "")
+    while ans != "" and ans is not None and p < len(tags):
+        ans = ans.get(tags[p], "")
 
-    for p in tags[1::]:
-        if ans == "" or not(isinstance(ans, dict)):
-            break
-
-        ans = ans.get(p, "")
+        p += 1
 
     return ans

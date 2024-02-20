@@ -82,7 +82,7 @@ def main(args):
                     </li>
                 """
 
-        postHTML = """
+        postHTML = f"""
                         </ul>
                     </div>
 

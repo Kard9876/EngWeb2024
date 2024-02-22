@@ -39,7 +39,7 @@ function good_request_css(res, data) {
 
 function bad_request(res) {
     res.writeHead(400, { 'Content-Type': 'text/html; charset=utf-8' })
-    res.write('<h1>There as been an error loading the required service.</h1>')
+    res.write('<h1>There as been an error with the required service.</h1>')
     res.write('<h2>We are sorry for the inconvenience.</h2>')
     res.end()
 }
@@ -47,6 +47,7 @@ function bad_request(res) {
 http.createServer(function (req, res) {
     let query = url.parse(req.url, true)
 
+    let method = req.method
 
     let path = query.pathname
 
@@ -58,17 +59,17 @@ http.createServer(function (req, res) {
 
     let filename = ""
 
-    if (index_page.test(path)) {
+    if (method == "GET" && index_page.test(path)) {
         filename = file_dir + 'index.html'
 
         read_file(filename, res)
 
-    } else if (city_page.test(path)) {
+    } else if (method == "GET" && city_page.test(path)) {
         filename = file_dir + path.substring(1) + '.html'
 
         read_file(filename, res)
 
-    } else if (style_sheet.test(path)) {
+    } else if (method == "GET" && style_sheet.test(path)) {
         filename = file_dir + path.substring(1)
 
         read_file(filename, res)

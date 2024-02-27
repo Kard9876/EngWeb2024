@@ -1,0 +1,4 @@
+{
+    "PORT": 12345,
+    "JSON_SERVER" : "http://localhost:3000"
+}

@@ -1,5 +1,6 @@
 import sys
 import json
+import re
 
 def insert_collection_film(id, title, film_id, collection):
     flag = True
@@ -47,19 +48,32 @@ def main(args):
         year = reg.get("year", "")
         cast = reg.get("cast", "")
         film_genres = reg.get("genres", "")
+
+        final_cast = []
+        final_film_genres = []
+
+        for c in cast:
+            if re.search(r'^Unknown$', c, re.I) is None:
+                final_cast.append(c)
+
+        for g in film_genres:
+            if re.search(r'^Unknown$', g, re.I) is None:
+                final_film_genres.append(g)
         
+
+
         films.append({
             "id" : id,
             "title" : title,
             "year" : year,
-            "cast" : cast,
-            "film_genres" : film_genres
+            "cast" : final_cast,
+            "film_genres" : final_film_genres
         })
 
-        for actor in cast:
+        for actor in final_cast:
             insert_collection_film(actor, title, id, actors)
 
-        for genre in film_genres:
+        for genre in final_film_genres:
             insert_collection_film(genre, title, id, genres)
 
     og_bd_file.close()

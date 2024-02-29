@@ -40,3 +40,7 @@
 .no-padding-inline-start{
     padding-inline-start: 0px !important;
 }
+
+.full-height-div {
+    flex: 1 !important;
+}

@@ -1,0 +1,16 @@
+{
+  "name": "tpc4",
+  "version": "1.0.0",
+  "description": "Aplicação de Gestão de dataset de compositores musicais",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "author": "Guilherme Barbosa (A100695)",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "json-server": "1.0.0-alpha.23"
+  }
+}

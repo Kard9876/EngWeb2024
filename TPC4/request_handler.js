@@ -5,17 +5,6 @@ const { parse } = require('querystring')
 
 let json_server_url = 'http://localhost:3000'
 
-/* 
-TODO
-
-- GET
-
-    - /periodos/delete/id
-
-- POST
-
-*/
-
 async function get_period_data(period_id){
     return new Promise( (resolve, reject) => {
         axios.get(json_server_url + `/compositores?periodo=${period_id}`)

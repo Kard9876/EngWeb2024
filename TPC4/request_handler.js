@@ -82,7 +82,7 @@ function process_get_request(res, url){
         .then( ans => {
             good_request_html(res, templates.composerListPage(ans.data))
         }).catch( error => {
-            
+            bad_axios_response(res, `There has been a error loading ${url}. Error: ${error}`)
         })
     }
 
@@ -273,8 +273,22 @@ function process_post_request(req, res, url){
 
                     }).catch( _ => {
                         axios.post(json_server_url + `/periodos`, response)
-                            .then( ans => {
-                                good_request_html(res, templates.periodPage(ans.data))
+                            .then( async ans => {
+                                let response = await get_period_data(ans.data.id)
+
+                                    if(!response.error) {
+                                        let period = {
+                                            "id": ans.data.id,
+                                            "start": ans.data.start,
+                                            "end": ans.data.end,
+                                            "compositores": response.data.compositores
+                                        }
+
+                                        good_request_html(res, templates.periodPage(period))
+                                    }
+                                    else {
+                                        bad_axios_response(res, `There has been a error acquiring period's data (${url}). Error: ${response.error}`)
+                                    }
                             }).catch( error => {
                                 bad_axios_response(res, `There has been a error inserting the desired period (${url}). Error: ${error}`)
                             })

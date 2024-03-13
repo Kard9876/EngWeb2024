@@ -172,7 +172,7 @@ function composerEditPage(composer){
     <html lang="en">
 
     <head>
-        <title>Formulário do Compositor</title>
+        <title>Editar Compositor</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/style.css">
@@ -186,7 +186,7 @@ function composerEditPage(composer){
             </div>
                 
             <header class="w3-half w3-container w3-blue-grey w3-center">
-                <h3>Formulário do Compositor</h3>
+                <h3>Editar Compositor</h3>
             </header>
 
             <div class="w3-quarter flex-box flex-center w3-blue-grey full-height-div">
@@ -245,7 +245,7 @@ function composerFailedEditPage(composer){
     <html lang="en">
 
     <head>
-        <title>Formulário do Compositor</title>
+        <title>Editar Compositor</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/style.css">
@@ -259,7 +259,7 @@ function composerFailedEditPage(composer){
             </div>
                 
             <header class="w3-half w3-container w3-blue-grey w3-center">
-                <h3>Formulário do Compositor</h3>
+                <h3>Editar Compositor</h3>
             </header>
 
             <div class="w3-quarter flex-box flex-center w3-blue-grey full-height-div">
@@ -474,7 +474,7 @@ function composerFailedAddPeriodPage(composer){
     <html lang="en">
 
     <head>
-        <title>Formulário do Compositor</title>
+        <title>Adicionar Compositor</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/style.css">
@@ -488,7 +488,7 @@ function composerFailedAddPeriodPage(composer){
             </div>
                 
             <header class="w3-half w3-container w3-blue-grey w3-center">
-                <h3>Formulário do Compositor</h3>
+                <h3>Adicionar Compositor</h3>
             </header>
 
             <div class="w3-quarter flex-box flex-center w3-blue-grey full-height-div">

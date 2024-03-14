@@ -873,7 +873,7 @@ function periodEditPage(period){
     <html lang="en">
 
     <head>
-        <title>Formulário do Periodo</title>
+        <title>Editar Periodo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/style.css">
@@ -887,7 +887,7 @@ function periodEditPage(period){
             </div>
                 
             <header class="w3-half w3-container w3-blue-grey w3-center">
-                <h3>Formulário do Periodo</h3>
+                <h3>Editar Periodo</h3>
             </header>
 
             <div class="w3-quarter flex-box flex-center w3-blue-grey full-height-div">
@@ -935,7 +935,7 @@ function periodFailedEditPage(period){
     <html lang="en">
 
     <head>
-        <title>Adicionar Periodo</title>
+        <title>Editar Periodo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/style.css">
@@ -949,7 +949,7 @@ function periodFailedEditPage(period){
             </div>
                 
             <header class="w3-half w3-container w3-blue-grey w3-center">
-                <h3>Adicionar Periodo</h3>
+                <h3>Editar Periodo</h3>
             </header>
 
             <div class="w3-quarter flex-box flex-center w3-blue-grey full-height-div">

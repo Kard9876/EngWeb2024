@@ -321,7 +321,7 @@ function process_post_request(req, res, url){
     
                                     good_request_html(res, templates.periodPage(period))
                                 } else {
-                                    bad_axios_response(res, `There has been a error acquiring given period's composers (${url}). Error: ${error}`)
+                                    bad_axios_response(res, `There has been a error acquiring given period's composers (${url}). Error: ${compositores.error}`)
                                 }
 
                             }).catch( error => {

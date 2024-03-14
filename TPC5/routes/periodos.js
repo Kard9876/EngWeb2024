@@ -38,6 +38,7 @@ Método GET
 ----------------------------------------------------------------------
 */
 
+
 /* GET period list page. */
 router.get('', function (req, res, next) {
   axios.get(json_server_url + `/periodos`)
@@ -55,40 +56,38 @@ router.get('', function (req, res, next) {
     }).catch(error => {
       res.render('error', { title: 'Erro lista periodos', message: `There has been a error loading "/periodos"`, error: error })
     })
-});
+})
+
 
 /* GET add period page. */
 router.get('/add', function (req, res, next) {
   res.render('add_period', { title: 'Adicionar Periodo' })
 });
 
-/* 
-else if (/\/periodos\/edit\/(\w|\d)+/.test(url)){
-  let pieces = url.split('/')
 
-  let id_periodo = pieces[pieces.length - 1]
+/* GET edit period page */
+router.get('/edit/:id', function (req, res, next) {
 
-  axios.get(json_server_url + '/periodos/' + id_periodo)
-  .then( async ans => {
-      good_request_html(res, templates.periodEditPage(ans.data))
-  }).catch( error => {
-      bad_axios_response(res, `There has been a error loading ${url}. Error: ${error}`)
-  })
-}
+  axios.get(json_server_url + '/periodos/' + req.params.id)
+    .then(async ans => {
+      res.render('edit_period', { title: 'Editar Periodo', period: ans.data })
+    }).catch(error => {
+      res.render('error', { title: 'Erro editar período', message: `There has been a error loading /periodos/edit/${req.params.id}`, error: error })
+    })
+})
 
-else if (/\/periodos\/delete\/(\w|\d)+/.test(url)){
-  let pieces = url.split('/')
 
-  let id_periodo = pieces[pieces.length - 1]
+/* GET delete period page */
+router.get('/delete/:id', function (req, res, next) {
 
-  axios.delete(json_server_url + '/periodos/' + id_periodo)
-  .then( ans => {
-      good_request_html(res, templates.periodDeletePage(ans.data))
-  }).catch( error => {
-      bad_axios_response(res, `There has been a error loading ${url}. Error: ${error}`)
-  })
-} 
-*/
+  axios.delete(json_server_url + '/periodos/' + req.params.id)
+    .then(async ans => {
+      res.render('delete_period', { title: 'Periodo apagado', period: ans.data })
+    }).catch(error => {
+      res.render('error', { title: 'Erro apagar período', message: `There has been a error loading /periodos/delete/${req.params.id}`, error: error })
+    })
+})
+
 
 /* GET period's page. */
 router.get('/:id', function (req, res, next) {
@@ -104,17 +103,18 @@ router.get('/:id', function (req, res, next) {
           "compositores": response.data.compositores
         }
 
-        res.render('period', { title: req.body.id, period: period })
+        res.render('period', { title: period.id, period: period })
       }
       else {
 
-        res.render('error', { title: 'Erro adicionar período', message: `There has been a error acquiring period's data (/periodos/${req.params.id})`, error: response.error })
+        res.render('error', { title: 'Erro obter período', message: `There has been a error acquiring period's data (/periodos/${req.params.id})`, error: response.error })
       }
     }).catch(error => {
 
-      res.render('error', { title: 'Erro adicionar período', message: `There has been a error loading /periodos/${req.params.id}`, error: error })
+      res.render('error', { title: 'Erro obter período', message: `There has been a error loading /periodos/${req.params.id}`, error: error })
     })
 })
+
 
 /*
 ----------------------------------------------------------------------
@@ -146,7 +146,7 @@ router.post('/add', function (req, res, next) {
                 "compositores": response.data.compositores
               }
 
-              res.render('period', { title: req.body.id, period: period })
+              res.render('period', { title: period.id, period: period })
             } else {
 
               res.render('error', { title: 'Erro adicionar período', message: `There has been a error acquiring period's data (/periodos/${req.params.id})`, error: response.error })
@@ -159,57 +159,52 @@ router.post('/add', function (req, res, next) {
   }
 })
 
-/*
-else if (/\/periodos\/edit\/(\w|\d)+/.test(url)){
-  let pieces = url.split('/')
+/* POST edit period */
+router.post('/edit/:id', function (req, res, next) {
+  axios.get(json_server_url + '/periodos/' + req.params.id)
+    .then(_ => {
+        if (req.body.id == req.params.id) {
+          axios.put(json_server_url + `/periodos/${req.params.id}`, req.body)
+            .then(async ans => {
+              let compositores = await get_period_data(req.params.id)
 
-  let id_periodo = pieces[pieces.length - 1]
+              if (!compositores.error) {
+                let period = {
+                  "id": ans.data.id,
+                  "start": ans.data.start,
+                  "end": ans.data.end,
+                  "compositores": compositores.data.compositores
+                }
 
-  axios.get(json_server_url + '/periodos/' + id_periodo)
-  .then( _ => {
-      collecReqBodyData(req, response => {
-          if(response.id == id_periodo){
-                  axios.put(json_server_url + `/periodos/${id_periodo}`, response)
-                      .then(async ans => {
-                          let compositores = await get_period_data(id_periodo)
-                          
-                          if(!compositores.error){
-                              let period = {
-                                  "id": ans.data.id,
-                                  "start": ans.data.start,
-                                  "end": ans.data.end,
-                                  "compositores": compositores.data.compositores
-                              }
+                res.render('period', { title: period.id, period: period })
+              } else {
 
-                              good_request_html(res, templates.periodPage(period))
-                          } else {
-                              bad_axios_response(res, `There has been a error acquiring given period's composers (${url}). Error: ${error}`)
-                          }
+                res.render('error', { title: 'Erro editar período', message: `There has been a error acquiring given period's composers ("/periodos/edit/${req.params.id}")`, error: compositores.error })
+              }
 
-                      }).catch( error => {
-                          bad_axios_response(res, `There has been a error updating the desired period (${url}). Error: ${error}`)
-                      })
-                  
-                  
-                  /* TODO Can i modify the id of the period? Even though json-server won't let me alter the id?       
-                  let compositores = await get_period_data(id_periodo)
+            }).catch(error => {
+              res.render('error', { title: 'Erro editar período', message: `There has been a error updating the desired period ("/periodos/edit/${req.params.id}")`, error: compositores.error })
+            })
 
-                  console.log(compositores)
 
-                  update_all_composer_period_data(compositores, response.id)
+          /* TODO Can i modify the id of the period? Even though json-server won't let me alter the id?       
+          let compositores = await get_period_data(id_periodo)
 
-                  good_request_html(res, templates.periodPage(response)) 
-                  */
-/*
-} else {
-response.id = id_periodo
-good_request_html(res, templates.periodFailedEditPage(response))
-}
+          console.log(compositores)
+
+          update_all_composer_period_data(compositores, response.id)
+
+          good_request_html(res, templates.periodPage(response)) 
+          */
+
+        } else {
+          req.body.id = req.params.id
+
+          res.render('failed_edit_period', {title: 'Editar Periodo', period: req.body})
+        }
+    }).catch(error => {
+      res.render('error', { title: 'Erro editar período', message: `There has been a error loading "/periodos/edit/${req.params.id}"`, error: error })
+    })
 })
-}).catch (error => {
-bad_axios_response(res, `There has been a error loading ${url}. Error: ${error}`)
-})
-}
-*/
 
 module.exports = router;

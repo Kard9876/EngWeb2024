@@ -3,13 +3,13 @@ var router = express.Router();
 
 const axios = require('axios')
 
-const json_server_url = 'http://localhost:3000'
+const mongo_server_url = 'http://localhost:9876'
 
 async function get_period_data(period_id) {
   return new Promise((resolve, reject) => {
-    axios.get(json_server_url + `/compositores?periodo=${period_id}`)
+    axios.get(mongo_server_url + `/compositores?periodo=${period_id}`)
       .then(response => {
-        resolve({ "error": null, "data": { "id": period_id, "compositores": response.data } })
+        resolve({ "error": null, "data": { "_id": period_id, "compositores": response.data } })
       }).catch(error => {
         reject({ "error": error, "data": null })
       })
@@ -20,10 +20,10 @@ async function get_all_period_data(period_ids) {
   let ans = []
 
   for (p of period_ids) {
-    let tmp = await get_period_data(p.id)
+    let tmp = await get_period_data(p._id)
 
     if (!tmp.error) {
-      ans.push({ "id": tmp.data.id, "compositores": tmp.data.compositores })
+      ans.push({ "_id": tmp.data._id, "compositores": tmp.data.compositores })
     } else {
       return { "error": tmp.error, "data": null }
     }
@@ -41,7 +41,7 @@ Método GET
 
 /* GET period list page. */
 router.get('', function (req, res, next) {
-  axios.get(json_server_url + `/periodos`)
+  axios.get(mongo_server_url + `/periodos`)
     .then(async ans => {
       let response = await get_all_period_data(ans.data)
 
@@ -68,7 +68,7 @@ router.get('/add', function (req, res, next) {
 /* GET edit period page */
 router.get('/edit/:id', function (req, res, next) {
 
-  axios.get(json_server_url + '/periodos/' + req.params.id)
+  axios.get(mongo_server_url + '/periodos/' + req.params.id)
     .then(async ans => {
       res.render('edit_period', { title: 'Editar Periodo', period: ans.data })
     }).catch(error => {
@@ -79,10 +79,18 @@ router.get('/edit/:id', function (req, res, next) {
 
 /* GET delete period page */
 router.get('/delete/:id', function (req, res, next) {
-
-  axios.delete(json_server_url + '/periodos/' + req.params.id)
+  axios.get(mongo_server_url + '/periodos/' + req.params.id)
     .then(async ans => {
-      res.render('delete_period', { title: 'Periodo apagado', period: ans.data })
+      if(ans.data){
+        axios.delete(mongo_server_url + '/periodos/' + req.params.id)
+          .then(async _ => {
+            res.render('delete_period', { title: 'Periodo apagado', period: ans.data })
+          }).catch(error => {
+            res.render('error', { title: 'Erro apagar período', message: `There has been a error loading /periodos/delete/${req.params.id}`, error: error })
+          })
+      } else {
+        res.render('error_message', { title: 'Erro apagar período', message: `There is no such period ${req.params.id}`})
+      }
     }).catch(error => {
       res.render('error', { title: 'Erro apagar período', message: `There has been a error loading /periodos/delete/${req.params.id}`, error: error })
     })
@@ -91,19 +99,19 @@ router.get('/delete/:id', function (req, res, next) {
 
 /* GET period's page. */
 router.get('/:id', function (req, res, next) {
-  axios.get(json_server_url + `/periodos/${req.params.id}`)
+  axios.get(mongo_server_url + `/periodos/${req.params.id}`)
     .then(async ans => {
       let response = await get_period_data(req.params.id)
 
       if (!response.error) {
         let period = {
-          "id": ans.data.id,
+          "_id": ans.data._id,
           "start": ans.data.start,
           "end": ans.data.end,
           "compositores": response.data.compositores
         }
 
-        res.render('period', { title: period.id, period: period })
+        res.render('period', { title: period._id, period: period })
       }
       else {
 
@@ -124,29 +132,28 @@ Método POST
 
 /* POST add new period */
 router.post('/add', function (req, res, next) {
-  if (req.body.id == "" || req.body.start == "" || req.body.end == "") {
+  if (req.body._id == "" || req.body.start == "" || req.body.end == "") {
 
     res.render('empty_add_page_period', { title: 'Adicionar Periodo', period: req.body })
   } else {
-    axios.get(json_server_url + `/periodos/${req.body.id}`)
-      .then(_ => {
+    axios.get(mongo_server_url + `/periodos/${req.body._id}`)
+      .then(ans => {
+        if(ans.data) res.render('failed_add_id_period', { title: 'Adicionar Periodo', period: req.body })
 
-        res.render('failed_add_id_period', { title: 'Adicionar Periodo', period: req.body })
-      }).catch(_ => {
-
-        axios.post(json_server_url + `/periodos`, req.body)
+        else {
+          axios.post(mongo_server_url + `/periodos`, req.body)
           .then(async ans => {
             let response = await get_period_data(req.params.id)
 
             if (!response.error) {
               let period = {
-                "id": ans.data.id,
-                "start": ans.data.start,
-                "end": ans.data.end,
+                "_id": req.body._id,
+                "start": req.body.start,
+                "end": req.body.end,
                 "compositores": response.data.compositores
               }
 
-              res.render('period', { title: period.id, period: period })
+              res.render('period', { title: period._id, period: period })
             } else {
 
               res.render('error', { title: 'Erro adicionar período', message: `There has been a error acquiring period's data (/periodos/${req.params.id})`, error: response.error })
@@ -155,28 +162,31 @@ router.post('/add', function (req, res, next) {
 
             res.render('error', { title: 'Erro adicionar período', message: `There has been a error loading "/periodos/add"`, error: error })
           })
+        }
+      }).catch(error => {
+        res.render('error', { title: 'Erro adicionar período', message: `There has been a error getting periodo's data"`, error: error })
       })
   }
 })
 
 /* POST edit period */
 router.post('/edit/:id', function (req, res, next) {
-  axios.get(json_server_url + '/periodos/' + req.params.id)
+  axios.get(mongo_server_url + '/periodos/' + req.params.id)
     .then(_ => {
-        if (req.body.id == req.params.id) {
-          axios.put(json_server_url + `/periodos/${req.params.id}`, req.body)
+        if (req.body._id == req.params.id) {
+          axios.put(mongo_server_url + `/periodos/${req.params.id}`, req.body)
             .then(async ans => {
               let compositores = await get_period_data(req.params.id)
 
               if (!compositores.error) {
                 let period = {
-                  "id": ans.data.id,
-                  "start": ans.data.start,
-                  "end": ans.data.end,
+                  "_id": req.body._id,
+                  "start": req.body.start,
+                  "end": req.body.end,
                   "compositores": compositores.data.compositores
                 }
 
-                res.render('period', { title: period.id, period: period })
+                res.render('period', { title: period._id, period: period })
               } else {
 
                 res.render('error', { title: 'Erro editar período', message: `There has been a error acquiring given period's composers ("/periodos/edit/${req.params.id}")`, error: compositores.error })
@@ -198,7 +208,7 @@ router.post('/edit/:id', function (req, res, next) {
           */
 
         } else {
-          req.body.id = req.params.id
+          req.body._id = req.params.id
 
           res.render('failed_edit_period', {title: 'Editar Periodo', period: req.body})
         }

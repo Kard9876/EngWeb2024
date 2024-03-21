@@ -1,0 +1,17 @@
+[
+    {
+        "_id": "Barroco",
+        "start": 1650,
+        "end": 1799
+    },
+    {
+        "_id": "Renascimento",
+        "start": 1550,
+        "end": 1722
+    },
+    {
+        "_id": "Modernismo",
+        "start": 1864,
+        "end": 2011
+    }
+]

@@ -92,7 +92,7 @@ router.post('/add', (req, res, next) => {
                 res.render('composer', { title: ans.data.nome, composer: ans.data })
               }).catch(error => {
 
-                res.render('error', { title: 'Erro adicionar compositor', message: `There has been a error inserting the desired compositor (/compositores/add)`, error: error })
+                res.render('error', { title: 'Erro adicionar compositor', message: `There has been a error inserting the desired composer (/compositores/add)`, error: error })
               })
           })
       }).catch(_ => {
@@ -112,7 +112,7 @@ router.post('/edit/:id', (req, res, next) => {
           res.render('composer', { title: ans.data.nome, composer: ans.data })
         }).catch(error => {
 
-          res.render('error', { title: 'Erro editar compositor', message: `There has been a error updating the desired compositor (/compositores/edit/${req.body.id})`, error: error })
+          res.render('error', { title: 'Erro editar compositor', message: `There has been a error updating the desired compososer (/compositores/edit/${req.body.id})`, error: error })
         })
     }).catch(_ => {
       req.body.id = req.params.id

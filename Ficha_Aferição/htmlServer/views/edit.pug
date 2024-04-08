@@ -1,0 +1,146 @@
+extends layout
+
+block content
+    .w3-row.flex-box
+        .w3-quarter.flex-box.flex-center.w3-blue-grey.full-height-div
+            a.w3-button.w3-round.w3-grey.w3-margin.w3-padding.w3-center(href="/") Voltar
+        
+        header.w3-half.w3-container.w3-blue-grey.w3-center
+            h3= title
+
+        .w3-quarter.flex-box.flex-center.w3-blue-grey.full-height-div
+
+    main.w3-margin.w3-padding
+        form(method="POST" action="/add" enctype="application/x-www-form-urlencoded")
+            fieldset
+                legend Simple
+                
+                label Id
+                input.w3-input.w3-round(type="text" name="_id" value=`${data._id}`)
+                br
+
+                label Nome
+                input.w3-input.w3-round(type="text" name="nome" value=`${data.nome}`)
+                br
+
+                label Idade
+                input.w3-input.w3-round(type="text" name="idade" value=`${data.idade}`)
+                br
+
+                label Sexo
+                input.w3-input.w3-round(type="text" name="sexo" value=`${data.sexo}`)
+                br
+
+                label Profissao
+                input.w3-input.w3-round(type="text" name="profissao" value=`${data.profissao}`)
+                br
+
+                label Marca Carro
+                input.w3-input.w3-round(type="text" name="marca_carro" value=`${data.marca_carro}`)
+                br
+
+            fieldset
+                legend Address
+                
+                label Cidade
+                input.w3-input.w3-round(type="text" name="cidade" value=`${data.morada.cidade}`)
+                br
+
+                label Distrito
+                input.w3-input.w3-round(type="text" name="distrito" value=`${data.morada.distrito}`)
+                br
+
+            fieldset
+                legend Political Partical
+                
+                label Abreviação
+                input.w3-input.w3-round(type="text" name="party_abbr" value=`${data.partido_politico.party_abbr}`)
+                br
+
+                label Nome
+                input.w3-input.w3-round(type="text" name="party_name" value=`${data.partido_politico.party_name}`)
+                br
+
+            fieldset
+                legend Atributs
+                
+                label Fumador
+                if data.atributos.fumador
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="fumador"  checked)
+                else
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="fumador")
+                br
+
+                label Gosta Cinema
+                if data.atributos.gosta_cinema
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_cinema"  checked)
+                else
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_cinema")
+                br
+
+                label Gosta Viajar
+                if data.atributos.gosta_viajar
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_viajar"  checked)
+                else
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_viajar")
+                br
+
+                label Acorda Cedo
+                if data.atributos.acorda_cedo
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="acorda_cedo"  checked)
+                else
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="acorda_cedo")
+                br
+
+                label Gosta Ler
+                if data.atributos.gosta_ler
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_ler"  checked)
+                else
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_ler")
+                br
+
+                label Gosta Musica
+                if data.atributos.gosta_musica
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_musica"  checked)
+                else
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_musica")
+                br
+
+                label Gosta Comer
+                if data.atributos.gosta_comer
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_comer"  checked)
+                else
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_comer")
+                br
+
+                label Gosta Animais Estimação
+                if data.atributos.gosta_animais_estimacao
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_animais_estimacao"  checked)
+                else
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_animais_estimacao")
+                br
+
+                label Gosta Dancar
+                if data.atributos.gosta_dancar
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_dancar"  checked)
+                else
+                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_dancar")
+                br
+
+                label Comida Favorita
+                input.w3-input.w3-round(type="text" name="comida_favorita" value=`${data.atributos.comida_favorita}`)
+                br
+
+            fieldset
+
+                .flex-box.flex-column
+                    label Descrição
+                    textarea(id="descrição" name="descrição" value=`${data.descrição}` rows="10" cols="50")
+                br
+
+            .w3-margin.w3-padding.flex-box.space-evenly
+                a.w3-button.w3-round.w3-blue-grey(href="/compositores") Cancelar
+                button.w3-button.w3-round.w3-blue-grey(type="submit") Guardar Alterações
+
+    footer.w3-container.w3-blue-grey
+        h5 Generated by FichaAferição::EngWeb2024::A100695 

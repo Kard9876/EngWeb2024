@@ -10,55 +10,59 @@ block content
 
         .w3-quarter.flex-box.flex-center.w3-blue-grey.full-height-div
 
+    if alert
+        .w3-panel.w3-red.w3-margin.w3-padding
+            h2= message
+
     main.w3-margin.w3-padding
-        form(method="POST" action="/add" enctype="application/x-www-form-urlencoded")
+        form(method="POST" action=`/edit/${data._id}` enctype="application/x-www-form-urlencoded")
             fieldset
                 legend Simple
                 
                 label Id
-                input.w3-input.w3-round(type="text" name="_id" value=`${data._id}`)
+                input.w3-border.w3-input.w3-round(type="text" name="_id" value=`${data._id}` disabled)
                 br
 
                 label Nome
-                input.w3-input.w3-round(type="text" name="nome" value=`${data.nome}`)
+                input.w3-border.w3-input.w3-round(type="text" name="nome" value=`${data.nome}`)
                 br
 
                 label Idade
-                input.w3-input.w3-round(type="text" name="idade" value=`${data.idade}`)
+                input.w3-border.w3-input.w3-round(type="text" name="idade" value=`${data.idade}`)
                 br
 
                 label Sexo
-                input.w3-input.w3-round(type="text" name="sexo" value=`${data.sexo}`)
+                input.w3-border.w3-input.w3-round(type="text" name="sexo" value=`${data.sexo}`)
                 br
 
                 label Profissao
-                input.w3-input.w3-round(type="text" name="profissao" value=`${data.profissao}`)
+                input.w3-border.w3-input.w3-round(type="text" name="profissao" value=`${data.profissao}`)
                 br
 
                 label Marca Carro
-                input.w3-input.w3-round(type="text" name="marca_carro" value=`${data.marca_carro}`)
+                input.w3-border.w3-input.w3-round(type="text" name="marca_carro" value=`${data.marca_carro}`)
                 br
 
             fieldset
                 legend Address
                 
                 label Cidade
-                input.w3-input.w3-round(type="text" name="cidade" value=`${data.morada.cidade}`)
+                input.w3-border.w3-input.w3-round(type="text" name="cidade" value=`${data.morada.cidade}`)
                 br
 
                 label Distrito
-                input.w3-input.w3-round(type="text" name="distrito" value=`${data.morada.distrito}`)
+                input.w3-border.w3-input.w3-round(type="text" name="distrito" value=`${data.morada.distrito}`)
                 br
 
             fieldset
                 legend Political Partical
                 
                 label Abreviação
-                input.w3-input.w3-round(type="text" name="party_abbr" value=`${data.partido_politico.party_abbr}`)
+                input.w3-border.w3-input.w3-round(type="text" name="party_abbr" value=`${data.partido_politico.party_abbr}`)
                 br
 
                 label Nome
-                input.w3-input.w3-round(type="text" name="party_name" value=`${data.partido_politico.party_name}`)
+                input.w3-border.w3-input.w3-round(type="text" name="party_name" value=`${data.partido_politico.party_name}`)
                 br
 
             fieldset
@@ -66,81 +70,132 @@ block content
                 
                 label Fumador
                 if data.atributos.fumador
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="fumador"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.fumador ? 1 : 2}` name="fumador"  checked)
                 else
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="fumador")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.fumador ? 1 : 2}` name="fumador")
                 br
 
                 label Gosta Cinema
                 if data.atributos.gosta_cinema
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_cinema"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_cinema ? 1 : 2}` name="gosta_cinema"  checked)
                 else
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_cinema")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_cinema ? 1 : 2}` name="gosta_cinema")
                 br
 
                 label Gosta Viajar
                 if data.atributos.gosta_viajar
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_viajar"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_viajar ? 1 : 2}` name="gosta_viajar"  checked)
                 else
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_viajar")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_viajar ? 1 : 2}` name="gosta_viajar")
                 br
 
                 label Acorda Cedo
                 if data.atributos.acorda_cedo
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="acorda_cedo"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.acorda_cedo ? 1 : 2}` name="acorda_cedo"  checked)
                 else
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="acorda_cedo")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.acorda_cedo ? 1 : 2}` name="acorda_cedo")
                 br
 
                 label Gosta Ler
                 if data.atributos.gosta_ler
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_ler"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_ler ? 1 : 2}` name="gosta_ler"  checked)
                 else
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_ler")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_ler ? 1 : 2}` name="gosta_ler")
                 br
 
                 label Gosta Musica
                 if data.atributos.gosta_musica
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_musica"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_musica ? 1 : 2}` name="gosta_musica"  checked)
                 else
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_musica")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_musica ? 1 : 2}` name="gosta_musica")
                 br
 
                 label Gosta Comer
                 if data.atributos.gosta_comer
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_comer"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_comer ? 1 : 2}` name="gosta_comer"  checked)
                 else
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_comer")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_comer ? 1 : 2}` name="gosta_comer")
                 br
 
                 label Gosta Animais Estimação
                 if data.atributos.gosta_animais_estimacao
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_animais_estimacao"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_animais_estimacao ? 1 : 2}` name="gosta_animais_estimacao"  checked)
                 else
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_animais_estimacao")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_animais_estimacao ? 1 : 2}` name="gosta_animais_estimacao")
                 br
 
                 label Gosta Dancar
                 if data.atributos.gosta_dancar
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_dancar"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_dancar ? 1 : 2}` name="gosta_dancar"  checked)
                 else
-                    input.w3-margin.w3-padding(type="checkbox" value="1" name="gosta_dancar")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_dancar ? 1 : 2}` name="gosta_dancar")
                 br
 
                 label Comida Favorita
-                input.w3-input.w3-round(type="text" name="comida_favorita" value=`${data.atributos.comida_favorita}`)
+                input.w3-border.w3-input.w3-round(type="text" name="comida_favorita" value=`${data.atributos.comida_favorita}`)
                 br
 
             fieldset
+                legend Descrição
 
                 .flex-box.flex-column
-                    label Descrição
-                    textarea(id="descrição" name="descrição" value=`${data.descrição}` rows="10" cols="50")
+                    textarea(id="descricao" name="descricao" rows="10" cols="50")=data.descricao
                 br
 
+            fieldset 
+                legend Desportos
+
+                .flex-box
+                    .flex-box.flex-column.width-100.w3-margin(id="desportos")
+                        each val, index in data.desportos 
+                            input.w3-input.w3-round.w3-border.w3-margin(type="text" name=`desporto${index+1}` id=`desporto${index+1}` value=`${val}`)
+
+                    .flex-box
+                        button.height-50px.width-50px.w3-margin.w3-button.w3-round.w3-blue-grey(id="addDesporto") +
+                        button.height-50px.width-50px.w3-margin.w3-button.w3-round.w3-blue-grey(id="removeDesporto") -
+
+            fieldset 
+                legend Animais 
+
+                .flex-box 
+                    .flex-box.flex-column.width-100.w3-margin(id="animais")
+                        each val, index in data.animais 
+                            input.w3-input.w3-round.w3-border.w3-margin(type="text" name=`animal${index+1}` id=`animal${index+1}` value=`${val}`)
+
+                    .flex-box
+                        button.height-50px.width-50px.w3-margin.w3-button.w3-round.w3-blue-grey(id="addAnimal") +
+                        button.height-50px.width-50px.w3-margin.w3-button.w3-round.w3-blue-grey(id="removeAnimal") -
+
+            fieldset 
+                legend Figura Pública
+
+                .flex-box 
+                    .flex-box.flex-column.width-100.w3-margin(id="figuras_publicas")
+                        each val, index in data.figura_publica_pt 
+                            input.w3-input.w3-round.w3-border.w3-margin(type="text" name=`figura_publica${index+1}` id=`figura_publica${index+1}` value=`${val}`)
+
+                    .flex-box
+                        button.height-50px.width-50px.w3-margin.w3-button.w3-round.w3-blue-grey(id="addFiguraPublica") +
+                        button.height-50px.width-50px.w3-margin.w3-button.w3-round.w3-blue-grey(id="removeFiguraPublica") -
+
+            fieldset 
+                legend Destinos Favoritos
+
+                .flex-box 
+                    .flex-box.flex-column.width-100.w3-margin(id="destinos_favoritos")
+                        each val, index in data.destinos_favoritos 
+                            input.w3-input.w3-round.w3-border.w3-margin(type="text" name=`destino_favorito${index+1}` id=`destino_favorito${index+1}` value=`${val}`)
+
+                    .flex-box
+                        button.height-50px.width-50px.w3-margin.w3-button.w3-round.w3-blue-grey(id="addDestinoFavorito") +
+                        button.height-50px.width-50px.w3-margin.w3-button.w3-round.w3-blue-grey(id="removeDestinoFavorito") -
+
             .w3-margin.w3-padding.flex-box.space-evenly
-                a.w3-button.w3-round.w3-blue-grey(href="/compositores") Cancelar
+                a.w3-button.w3-round.w3-blue-grey(href="/") Cancelar
                 button.w3-button.w3-round.w3-blue-grey(type="submit") Guardar Alterações
 
     footer.w3-container.w3-blue-grey
         h5 Generated by FichaAferição::EngWeb2024::A100695 
+
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js") 
+    script(src="/javascripts/form_manipulation.js")

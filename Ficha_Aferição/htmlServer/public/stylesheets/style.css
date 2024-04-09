@@ -57,3 +57,15 @@ a {
 .margin-16{
   margin: 16px;
 }
+
+.height-50px{
+  height: 50px;
+}
+
+.width-50px{
+  width: 50px;
+}
+
+.width-100{
+  width: 100%;
+}

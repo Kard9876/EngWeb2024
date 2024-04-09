@@ -15,8 +15,6 @@ def main(args):
         ans = []
 
         for reg in db:
-            print
-
             reg['_id'] = reg.get('BI')
 
             if reg['_id'] is None:
@@ -25,6 +23,13 @@ def main(args):
 
             else:
                 del reg['BI']
+
+            reg['descricao'] = reg.get('descrição', '')
+
+            if reg.get('descrição') is not None:
+                del reg['descrição']
+
+            print(reg)
 
             ans.append(reg)
 

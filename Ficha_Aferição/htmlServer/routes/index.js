@@ -4,6 +4,9 @@ const axios = require('axios')
 
 const dataAPI = 'http://localhost:7777/'
 
+var alert = false
+var message = ''
+
 /*
 morada: [Object],
 partido_politico: [Object],
@@ -46,7 +49,7 @@ router.get('/edit/:id', function (req, res, next) {
 	axios.get(dataAPI + req.params.id)
 		.then(data => {
 			if (data.status == 200) {
-				res.render('edit', { title: 'Edit Athlets', data: data.data });
+				res.render('edit', { title: 'Edit Athlets', alert: alert, message: message, data: data.data });
 			}
 
 			else res.render('error', { message: 'There has been an error retrieving the given athlet.', error: { status: data.status, stack: 'No stack to be shown.' } });
@@ -81,6 +84,10 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.post('/add', function (req, res, next) {
+	console.log(req.body)
+
+	return
+
 	axios.post(dataAPI, req.body)
 		.then(_ => {
 			alert('Athlet added sucessfully!')
@@ -91,7 +98,24 @@ router.post('/add', function (req, res, next) {
 		})
 })
 
-router.post('/edit/:id', function (req, res, next) {
+router.post('/edit/:id', async function (req, res, next) {
+	alert = false
+	message = ''
+
+	let keys = Object.keys(req.body)
+
+	for (let key = 0; key < keys.length; key++) {
+		if (req.body[keys[key]] == '') {
+			alert = true
+			message = 'Empty fields'
+			res.redirect(`/edit/${req.params.id}`)
+		}
+	}
+
+	/* TODO Process dictionary and list fields */
+
+	return
+
 	axios.put(dataAPI + req.params.id, req.body)
 		.then(_ => {
 			alert('Athlet edited sucessfully sucessfully!')

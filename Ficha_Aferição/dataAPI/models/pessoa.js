@@ -9,7 +9,7 @@ const pessoaSchema = new mongoose.Schema({
         cidade: String,
         distrito: String
     },
-    descrição: String,
+    descricao: String,
     profissao: String,
     partido_politico: {
         party_abbr: String,

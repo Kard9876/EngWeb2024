@@ -10,10 +10,6 @@ block content
 
         .w3-quarter.flex-box.flex-center.w3-blue-grey.full-height-div
 
-    if alert
-        .w3-panel.w3-red.w3-margin.w3-padding
-            h2= message
-
     main.w3-margin.w3-padding
         form(method="POST" action=`/edit/${data._id}` enctype="application/x-www-form-urlencoded")
             fieldset
@@ -35,7 +31,7 @@ block content
                 input.w3-border.w3-input.w3-round(type="text" name="sexo" value=`${data.sexo}`)
                 br
 
-                label Profissao
+                label Profissão
                 input.w3-border.w3-input.w3-round(type="text" name="profissao" value=`${data.profissao}`)
                 br
 
@@ -43,8 +39,12 @@ block content
                 input.w3-border.w3-input.w3-round(type="text" name="marca_carro" value=`${data.marca_carro}`)
                 br
 
+                label Religião
+                input.w3-border.w3-input.w3-round(type="text" name="religiao" value=`${data.religiao}`)
+                br
+
             fieldset
-                legend Address
+                legend Morada
                 
                 label Cidade
                 input.w3-border.w3-input.w3-round(type="text" name="cidade" value=`${data.morada.cidade}`)
@@ -70,65 +70,65 @@ block content
                 
                 label Fumador
                 if data.atributos.fumador
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.fumador ? 1 : 2}` name="fumador"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="fumador"  checked)
                 else
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.fumador ? 1 : 2}` name="fumador")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="fumador")
                 br
 
                 label Gosta Cinema
                 if data.atributos.gosta_cinema
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_cinema ? 1 : 2}` name="gosta_cinema"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_cinema"  checked)
                 else
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_cinema ? 1 : 2}` name="gosta_cinema")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_cinema")
                 br
 
                 label Gosta Viajar
                 if data.atributos.gosta_viajar
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_viajar ? 1 : 2}` name="gosta_viajar"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_viajar"  checked)
                 else
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_viajar ? 1 : 2}` name="gosta_viajar")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_viajar")
                 br
 
                 label Acorda Cedo
                 if data.atributos.acorda_cedo
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.acorda_cedo ? 1 : 2}` name="acorda_cedo"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="acorda_cedo"  checked)
                 else
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.acorda_cedo ? 1 : 2}` name="acorda_cedo")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="acorda_cedo")
                 br
 
                 label Gosta Ler
                 if data.atributos.gosta_ler
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_ler ? 1 : 2}` name="gosta_ler"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_ler"  checked)
                 else
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_ler ? 1 : 2}` name="gosta_ler")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_ler")
                 br
 
                 label Gosta Musica
                 if data.atributos.gosta_musica
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_musica ? 1 : 2}` name="gosta_musica"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_musica"  checked)
                 else
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_musica ? 1 : 2}` name="gosta_musica")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_musica")
                 br
 
                 label Gosta Comer
                 if data.atributos.gosta_comer
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_comer ? 1 : 2}` name="gosta_comer"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_comer"  checked)
                 else
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_comer ? 1 : 2}` name="gosta_comer")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_comer")
                 br
 
                 label Gosta Animais Estimação
                 if data.atributos.gosta_animais_estimacao
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_animais_estimacao ? 1 : 2}` name="gosta_animais_estimacao"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_animais_estimacao"  checked)
                 else
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_animais_estimacao ? 1 : 2}` name="gosta_animais_estimacao")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_animais_estimacao")
                 br
 
                 label Gosta Dancar
                 if data.atributos.gosta_dancar
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_dancar ? 1 : 2}` name="gosta_dancar"  checked)
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_dancar"  checked)
                 else
-                    input.w3-border.w3-margin.w3-padding(type="checkbox" value=`${data.atributos.gosta_dancar ? 1 : 2}` name="gosta_dancar")
+                    input.w3-border.w3-margin.w3-padding(type="checkbox" name="gosta_dancar")
                 br
 
                 label Comida Favorita
@@ -139,7 +139,7 @@ block content
                 legend Descrição
 
                 .flex-box.flex-column
-                    textarea(id="descricao" name="descricao" rows="10" cols="50")=data.descricao
+                    input.w3-border.w3-input.w3-round(type="text" id="descrição" name="descricao" value=`${data.descricao}`)
                 br
 
             fieldset 

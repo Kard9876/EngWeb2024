@@ -4,26 +4,6 @@ const axios = require('axios')
 
 const dataAPI = 'http://localhost:7777/'
 
-var alert = false
-var message = ''
-
-/*
-morada: [Object],
-partido_politico: [Object],
-atributos: [Object],
-_id: '10569221-6',
-nome: 'Jairo Marzagoo',
-idade: 54,
-sexo: 'outro',
-'descrição': 'Reprehenderit aliqua nulla culpa consequat eu minim sunt. Amet cupidatat Lorem eu ex mollit aute mollit in tempor ad dolor occaecat ex. Esse eiusmod dolor id in incididunt cillum laboris elit sint voluptate ullamco.',
-profissao: 'Médico de Ginecologia e obstetrícia',
-desportos: [Array],
-animais: [Array],
-figura_publica_pt: [Array],
-marca_carro: 'Kia',
-destinos_favoritos: [Array]
-*/
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
 	axios.get(dataAPI)
@@ -49,7 +29,7 @@ router.get('/edit/:id', function (req, res, next) {
 	axios.get(dataAPI + req.params.id)
 		.then(data => {
 			if (data.status == 200) {
-				res.render('edit', { title: 'Edit Athlets', alert: alert, message: message, data: data.data });
+				res.render('edit', { title: 'Edit Athlets', data: data.data });
 			}
 
 			else res.render('error', { message: 'There has been an error retrieving the given athlet.', error: { status: data.status, stack: 'No stack to be shown.' } });
@@ -83,11 +63,8 @@ router.get('/:id', function (req, res, next) {
 		});
 });
 
+// TODO Como mandar informação de erro ao jquery?
 router.post('/add', function (req, res, next) {
-	console.log(req.body)
-
-	return
-
 	axios.post(dataAPI, req.body)
 		.then(_ => {
 			alert('Athlet added sucessfully!')
@@ -98,24 +75,8 @@ router.post('/add', function (req, res, next) {
 		})
 })
 
+// TODO Como mandar informação de erro ao jquery?
 router.post('/edit/:id', async function (req, res, next) {
-	alert = false
-	message = ''
-
-	let keys = Object.keys(req.body)
-
-	for (let key = 0; key < keys.length; key++) {
-		if (req.body[keys[key]] == '') {
-			alert = true
-			message = 'Empty fields'
-			res.redirect(`/edit/${req.params.id}`)
-		}
-	}
-
-	/* TODO Process dictionary and list fields */
-
-	return
-
 	axios.put(dataAPI + req.params.id, req.body)
 		.then(_ => {
 			alert('Athlet edited sucessfully sucessfully!')

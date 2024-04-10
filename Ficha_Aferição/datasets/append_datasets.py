@@ -2,6 +2,7 @@
 import requests
 import sys
 import json
+import time
  
 def main(args):
     URL = "http://localhost:7777/"
@@ -20,3 +21,4 @@ def main(args):
 
 if __name__ == '__main__':
     main(sys.argv)
+    time.sleep(3)

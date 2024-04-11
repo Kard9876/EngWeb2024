@@ -7,9 +7,9 @@
 
 ## Resumo
 
-A ficha de aferição possui um conjunto de exercícios ao fim dos quais é esperado obter o processamento dos [datasets](/datasets) fornecidos pela equipa docente, o envio dos dados contidos nos referidos datasets a uma base de dados, em mongoDB, através de uma [API de dados](/dataAPI) e, por fim, a disponibilização das operações **CRUD** aos utilizadores através de uma [interface web](/htmlServer).
+A ficha de aferição possui um conjunto de exercícios ao fim dos quais é esperado obter o processamento dos [datasets](datasets) fornecidos pela equipa docente, o envio dos dados contidos nos referidos datasets a uma base de dados, em mongoDB, através de uma [API de dados](dataAPI) e, por fim, a disponibilização das operações **CRUD** aos utilizadores através de uma [interface web](htmlServer).
 
-Para o processamento dos datasets foi desenvolvido um [script em python](/datasets/process_db.py). Este apenas lê o ficheiro indicado no primeiro argumento e, para cada registo lá contido, irá alterar o nome de alguns campos. No fim de ler todos os registo, escreve no ficheiro passado como segundo argumento o resultado do processamento.
+Para o processamento dos datasets foi desenvolvido um [script em python](datasets/process_db.py). Este apenas lê o ficheiro indicado no primeiro argumento e, para cada registo lá contido, irá alterar o nome de alguns campos. No fim de ler todos os registo, escreve no ficheiro passado como segundo argumento o resultado do processamento.
 
 A API de dados segue a ideologia REST e possui as seguintes rotas (que implementam os métodos **CRUD**):
 
@@ -21,7 +21,7 @@ A API de dados segue a ideologia REST e possui as seguintes rotas (que implement
 - PUT `/:id`, a qual permite atualizar a pessoa indicada pelo parâmetro id com a informação passada no *body* do pedido
 - DELETE `/:id`, a qual apaga da base de dados a informação da pessoa com o id passado como parâmetro
 
-Para enviar os dados contidos nos datasets processados para a base de dados foram desenvolvidos dois scripts, um em [javascript](/datasets/append_datasets.js) e outro em [python](/datasets/append_datasets.py). O script desenvolvido em python possui um problema que esgota as portas disponíveis para a conexão, daí ter sido desenvolvido outro em javascript. Decidi manter os dois scripts na eventualidade de conseguir corrigir o problema no primeiro.
+Para enviar os dados contidos nos datasets processados para a base de dados foram desenvolvidos dois scripts, um em [javascript](datasets/append_datasets.js) e outro em [python](datasets/append_datasets.py). O script desenvolvido em python possui um problema que esgota as portas disponíveis para a conexão, daí ter sido desenvolvido outro em javascript. Decidi manter os dois scripts na eventualidade de conseguir corrigir o problema no primeiro.
 
 Por fim, a interface web desenvolvida fornece a interface gráfica necessária para a interação entre a API de dados e utilizador e suporta as seguintes rotas:
 
